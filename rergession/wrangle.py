@@ -17,7 +17,32 @@ from env import host, user, password
 def read_sql_to_df(database, table, username=user, hostname=host, password=password):
     """Returns a dataframe that is made from the a SQL SELECT * FROM. Only thing not-defualted and needs as input is DB and table."""
     url = f'mysql+pymysql://{username}:{password}@{hostname}/{database}'
-    return pd.read_sql(f'SELECT customer_id, tenure, monthly_charges, total_charges, churn FROM {table}', url)
+    return pd.read_sql(f'SELECT customer_id, tenure, monthly_charges, total_charges FROM {table}', url)
 
-#
+#Make the df
 data = read_sql_to_df('telco_churn','customers')
+#Get rid of string values that start, end, and contain nothing but whitespaces (/s)*
+data.replace(r'^\s*$', np.nan, regex=True, inplace=True)
+#Make the total charges a float.
+data['total_charges'] = data.total_charges.astype(float)
+
+#Data is now just 3 columns of integers, all non-null. After this command that drops nulls and replaces that tyep with a int.
+data = data.dropna().astype('int')
+
+def wrangle_telco():
+    """
+    This will create a dataframe that is made from the telco_churn/customers table. Just 3 numerical columns with the customer id to index.
+    No null-values anywhere in the df.
+    """
+    import pandas as pd
+    import numpy as np
+    from env import host, user, password
+
+    database = 'telco_churn'
+    table = 'customers'
+    url = f'mysql+pymysql://{user}:{password}@{host}/{database}'
+    data = pd.read_sql(f'SELECT customer_id, tenure, monthly_charges, total_charges FROM {table}', url)
+    data.replace(r'^\s*$', np.nan, regex=True, inplace=True)
+    data['total_charges'] = data.total_charges.astype(float)
+    #data = data.dropna().astype('int')
+    return data
