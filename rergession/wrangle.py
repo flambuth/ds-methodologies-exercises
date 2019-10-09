@@ -29,20 +29,37 @@ data['total_charges'] = data.total_charges.astype(float)
 #Data is now just 3 columns of integers, all non-null. After this command that drops nulls and replaces that tyep with a int.
 data = data.dropna().astype('int')
 
-def wrangle_telco():
-    """
-    This will create a dataframe that is made from the telco_churn/customers table. Just 3 numerical columns with the customer id to index.
-    No null-values anywhere in the df.
-    """
-    import pandas as pd
-    import numpy as np
-    from env import host, user, password
+# def wrangle_telco(sql_query):
+#     """
+#     This will create a dataframe that is made from the telco_churn/customers table. Just 3 numerical columns with the customer id to index.
+#     No null-values anywhere in the df.
+#     """
+#     import pandas as pd
+#     import numpy as np
+#     from env import host, user, password
 
-    database = 'telco_churn'
-    table = 'customers'
-    url = f'mysql+pymysql://{user}:{password}@{host}/{database}'
-    data = pd.read_sql(f'SELECT customer_id, tenure, monthly_charges, total_charges FROM {table}', url)
-    data.replace(r'^\s*$', np.nan, regex=True, inplace=True)
-    data['total_charges'] = data.total_charges.astype(float)
-    #data = data.dropna().astype('int')
-    return data
+#     database = 'telco_churn'
+#     table = 'customers'
+#     url = f'mysql+pymysql://{user}:{password}@{host}/{database}'
+#     data = pd.read_sql(f'SELECT customer_id, tenure, monthly_charges, total_charges FROM {table} WHERE contract_type = 3', url)
+#     data.replace(r'^\s*$', np.nan, regex=True, inplace=True)
+#     data['total_charges'] = data.total_charges.astype(float)
+#     df = df.dropna()
+#     return data
+
+def wrangle_telco(): 
+    """ 
+    This will create a dataframe that is made from the telco_churn/customers table. Just 3 numerical columns with the customer id to index. 
+    No null-values anywhere in the df. 
+    """ 
+    import pandas as pd 
+    import numpy as np 
+    from env import host, user, password
+    database = 'telco_churn' 
+    table = 'customers' 
+    url = f'mysql+pymysql://{user}:{password}@{host}/{database}' 
+    data = pd.read_sql(f'SELECT customer_id, tenure, monthly_charges, total_charges FROM {table} WHERE contract_type_id = 3', url) 
+    data.replace(r'^\s*$', np.nan, regex=True, inplace=True) 
+    data['total_charges'] = data.total_charges.astype(float) 
+    data = data.dropna() 
+    return data 
