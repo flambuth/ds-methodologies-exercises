@@ -74,8 +74,7 @@ trainy, testy = train_test_split(y, train_size = .80, random_state = 123)
 # standard_scaler()
 scalerX = StandardScaler(copy=True, with_mean=True, with_std=True).fit(trainX)
 scalery = StandardScaler(copy=True, with_mean=True, with_std=True).fit(trainy)
-
-sc = StandardScaler()
+scalerx = stand().fit()
 
 trainX_scaled = pd.DataFrame(scalerX.transform(trainX), columns=trainX.columns.values).set_index(trainX.index.values)
 testX_scaled = pd.DataFrame(scalerX.transform(testX), columns=testX.columns.values).set_index(testX.index.values)
@@ -84,7 +83,37 @@ trainy_scaled = pd.DataFrame(scalery.transform(trainy), columns=trainy.columns.v
 testy_scaled = pd.DataFrame(scalery.transform(testy), columns=testy.columns.values).set_index(testy.index.values)
 
 # scale_inverse()
+################
+
+
+
+
 # uniform_scaler()
+scalerX = QuantileTransformer(n_quantiles=100, output_distribution='uniform', random_state=123, copy=True).fit(trainX)
+scalery = QuantileTransformer(n_quantiles=100, output_distribution='uniform', random_state=123, copy=True).fit(trainy)
+
+trainX_scaled = pd.DataFrame(scalerX.transform(trainX), columns=trainX.columns.values).set_index([trainX.index.values])
+trainy_scaled = pd.DataFrame(scalery.transform(trainy), columns=trainy.columns.values).set_index([trainy.index.values])
+
+
+testy_scaled = pd.DataFrame(scaleryX.transform(testX), columns=testX.columns.values).set_index([testX.index.values])
+testy_scaled = pd.DataFrame(scaleryy.transform(testy), columns=testy.columns.values).set_index([testy.index.values])
+
+
 # gaussian_scaler()
+scalerX = PowerTransformer(method='yeo-johnson', standardize=False, copy=True).fit(trainX)
+scalery = PowerTransformer(method='yeo-johnson', standardize=False, copy=True).fit(trainy)
+# apply to train
+train_scaledX = pd.DataFrame(scalerX.transform(train), columns=trainX.columns.values).set_index([trainX.index.values])
+train_scaledy = pd.DataFrame(scalery.transform(train), columns=trainy.columns.values).set_index([trainy.index.values])
+
+# apply to test
+test_scaledX = pd.DataFrame(scalerX.transform(test), columns=testX.columns.values).set_index([testX.index.values])
+test_scaledy = pd.DataFrame(scalery.transform(test), columns=testy.columns.values).set_index([testy.index.values])
+
+
 # min_max_scaler()
+
+
+
 # iqr_robust_scaler()
