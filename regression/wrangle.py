@@ -64,4 +64,3 @@ def wrangle_telco():
     data['total_charges'] = data.total_charges.astype(float) 
     data = data.dropna() 
     return data 
-
