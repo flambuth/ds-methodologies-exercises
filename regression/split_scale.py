@@ -15,8 +15,26 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler, QuantileTransformer, PowerTransformer, RobustScaler, MinMaxScaler
 from sklearn.model_selection import train_test_split
 import wrangle_grades
-improt wrangle
+#from wrangle import wrangle_telco as wr_telco
 import env
+#for some reason, when i import this, it does not work.
+def wrangle_telco(): 
+    """ 
+    This will create a dataframe that is made from the telco_churn/customers table. Just 3 numerical columns with the customer id to index. 
+    No null-values anywhere in the df. 
+    """ 
+    import pandas as pd 
+    import numpy as np 
+    from env import host, user, password
+    database = 'telco_churn' 
+    table = 'customers' 
+    url = f'mysql+pymysql://{user}:{password}@{host}/{database}'
+    query = f'SELECT * FROM {table} WHERE contract_type_id = 3' 
+    data = pd.read_sql(query, url) 
+    data.replace(r'^\s*$', np.nan, regex=True, inplace=True) 
+    data['total_charges'] = data.total_charges.astype(float) 
+    data = data.dropna() 
+    return data 
 
 #Use our home-baked data cleaning function
 df = wrangle_grades.wrangle_grades()
@@ -48,6 +66,21 @@ train_scaled = pd.DataFrame(scaler.transform(train), columns=train.columns.value
 # transform test, repeat process for making train_scaled, but using 'test' in the boxes to fill.
 test_scaled = pd.DataFrame(scaler.transform(test), columns=test.columns.values).set_index([test.index.values])
 
-db = 'telco_churn'
+########################
 
-wrangle.get_db_url(db)
+
+
+#Our block of data, that i had to use with the in-module funciton because mine wont work when it's imported.
+#Why i dont know. I will bother me on long grey mornings as I grieve about it.
+telco_data = wrangle_telco()
+
+#X, our predictor is all the columns except for total chages
+X = telco_data.drop(columns=['customer_id', 'total_charges'])
+#y, is our target variable, the total charges of each customer(row). We want to predict that based on the 
+#data we have in X
+y = telco_data['total_charges']
+
+#Split each up into 80/20 train/test groups. They both have teh same random seed, and they each have the indexing
+#from their original DataFrame, 'telco_data'.
+trainX, testX, trainy, testy = train_test_split(df, train_size = .80, random_state = 123)
+

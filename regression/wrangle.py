@@ -58,7 +58,7 @@ def wrangle_telco():
     database = 'telco_churn' 
     table = 'customers' 
     url = f'mysql+pymysql://{user}:{password}@{host}/{database}'
-    query = f'SELECT customer_id, tenure, monthly_charges, total_charges FROM {table} WHERE contract_type_id = 3' 
+    query = f'SELECT * FROM {table} WHERE contract_type_id = 3' 
     data = pd.read_sql(query, url) 
     data.replace(r'^\s*$', np.nan, regex=True, inplace=True) 
     data['total_charges'] = data.total_charges.astype(float) 
