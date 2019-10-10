@@ -74,7 +74,7 @@ trainy, testy = train_test_split(y, train_size = .80, random_state = 123)
 # standard_scaler()
 scalerX = StandardScaler(copy=True, with_mean=True, with_std=True).fit(trainX)
 scalery = StandardScaler(copy=True, with_mean=True, with_std=True).fit(trainy)
-scalerx = stand().fit()
+
 
 trainX_scaled = pd.DataFrame(scalerX.transform(trainX), columns=trainX.columns.values).set_index(trainX.index.values)
 testX_scaled = pd.DataFrame(scalerX.transform(testX), columns=testX.columns.values).set_index(testX.index.values)
@@ -117,3 +117,14 @@ test_scaledy = pd.DataFrame(scalery.transform(test), columns=testy.columns.value
 
 
 # iqr_robust_scaler()
+
+
+
+def apply_transformation(X,y):
+    scaler = MinMaxScaler(copy=True, feature_range=(0,1)).fit(train)
+
+    train_scaled = pd.DataFrame(scaler.transform(train), columns=train.columns.values).set_index([train.index.values])
+
+    test_scaled = pd.DataFrame(scaler.transform(test), columns=test.columns.values).set_index([test.index.values])
+
+    train_scaled.head()
