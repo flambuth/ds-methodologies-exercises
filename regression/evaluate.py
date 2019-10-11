@@ -55,8 +55,15 @@ def regression_errors(y, yhat):
 # Write a function, baseline_mean_errors(y), that takes in your target, y, computes the SSE, MSE & RMSE 
 # when yhat is equal to the mean of all y, and returns the error values (SSE, MSE, and RMSE).
 def baseline_mean_errors(y):
-
-
+    yhat = y.mean() 
+    df['residual'] = yhat - df['y']
+    df['residual^2'] = df.residual ** 2
+    SSE = sum(df['residual^2'])
+    MSE = SSE/len(df)
+    RMSE = sqrt(MSE)
+    ESS = sum((df.yhat - df.tip.mean())**2)
+    TSS = ESS + SSE
+    return SSE, ESS, TSS, MSE, RMSE
 
 # Write a function, better_than_baseline(SSE), that returns true if your model performs better than the 
 # baseline, otherwise false.
