@@ -31,7 +31,7 @@ def plot_variable_pairs(dataframe):
 
 def months_to_years(tenure_months, df):
     df['tenure_years'] = df.tenure/12
-    df['tenure_years'] = df.tenure_years.astype(int)
+    df['tenure_years'] = df.tenure_years.astype('category')
     return df
 #3
 # Write a function, plot_categorical_and_continous_vars(categorical_var, continuous_var, 
@@ -41,7 +41,9 @@ def months_to_years(tenure_months, df):
 # can then look into seaborn and matplotlib documentation for ways to create plots.
 
 def plot_categorical_and_continous_vars(categorical_var, continuous_var):
-    
-
+    plt.figure(figsize=(8,6))
+    sns.heatmap(train.corr(), cmap='Blues', annot=True)
+    plt.ylim(0, 4)
+    sns.catplot(x='tenure_years', y='monthly_charges', data=train);
 #############
 wrangle.wrangle_telco()
