@@ -40,10 +40,8 @@ def months_to_years(tenure_months, df):
 # ways to visualize categorical with continuous: https://datavizcatalogue.com/. You 
 # can then look into seaborn and matplotlib documentation for ways to create plots.
 
-def plot_categorical_and_continous_vars(categorical_var, continuous_var):
+def plot_categorical_and_continous_vars(cat, cont):
     plt.figure(figsize=(8,6))
-    sns.heatmap(train.corr(), cmap='Blues', annot=True)
-    plt.ylim(0, 4)
     sns.catplot(x='tenure_years', y='monthly_charges', data=train);
 #############
 wrangle.wrangle_telco()

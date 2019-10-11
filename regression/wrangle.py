@@ -23,10 +23,10 @@ def clean_data(df):
     df = df.dropna()
     return df
   
-def wrangle_telco():
-    df = get_data_from_mysql()
-    df = clean_data(df)
-    return df
+# def wrangle_telco():
+#     df = get_data_from_mysql()
+#     df = clean_data(df)
+#     return df
     
 def wrangle_telco():
     return clean_data(get_data_from_mysql())
