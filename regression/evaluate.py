@@ -111,11 +111,13 @@ def better_than_baseline(x,y):
 
 
 def model_significance(ols_model):    
-#I didnt get to it, but i know we have to make a T-TEST betwen the predicted y and the mean of y. We want to
-#see a P-value below 0.05 to say that is is "siginficatly different".
+
     regr = make_ols_model()
     r2 = regr.ess/regr.centered_tss
     r_pval = regr.f_pvalue
+
+#I didnt get to it, but i know we have to make a T-TEST betwen the predicted y and the mean of y. We want to
+#see a P-value below 0.05 to say that is is "siginficatly different".
 # from scipy.stats import ttest_ind
 # data1, data2 = this would be predicted-y and y.mean()
 
