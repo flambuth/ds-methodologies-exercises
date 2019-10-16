@@ -134,6 +134,9 @@ def find_top_n_features(model, n, X, y):
     selected_features = rfe.fit(X,y) 
     return selected_features.ranking_
 #This returns the ranking array. I need to match up the 1s to their column name and returns that
+#Pick something from X.columns[0-n] that is matched up to that ranking array I returned.
+#Pick the ones in the ranking array, remember it's index, because that matches with the index of 
+#X.columns. y is one columns, so you can say it's column name by using y.columns[0]
 
 # third takes the list of the top n features as input and returns a new X_train and X_test dataframe with 
 # those top features , recursive_feature_elimination() 
