@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
+from sklearn.linear_model import LinearRegression
+from sklearn.feature_selection import RFE, RFECV
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -68,25 +70,27 @@ def ols_backwards_elimination(X_train, y_train):
     cols = list(X_train.columns)
     pmax = 1
     while (len(cols)>0):
-    p= []
-    X_1 = X_train[cols]
-    X_1 = sm.add_constant(X_1)
-    model = sm.OLS(y_train,X_1).fit()    
-#Looks like p is an array with each value being hte pvalue of each row.
-#Apparently model objects have a pvalues attribute
-    p = pd.Series(model.pvalues.values[1:],index = cols)
-#Of those pvalues in that series, pmax is the one with the highest p-value. That's the first feature to go!
-    pmax = max(p)
-    feature_with_p_max = p.idxmax()
-#This will iterate through until there is only features that havea p-value above 0.05
-    if(pmax>0.05):
-        cols.remove(feature_with_p_max)
-    else:
-#Once there are no p-values that are larger than 0.05, the loop breaks and we're left with cols that made the cut
-        break
+        p= []
+        X_1 = X_train[cols]
+        X_1 = sm.add_constant(X_1)
+        model = sm.OLS(y_train,X_1).fit()    
+    #Looks like p is an array with each value being hte pvalue of each row.
+    #Apparently model objects have a pvalues attribute
+        p = pd.Series(model.pvalues.values[1:],index = cols)
+    #Of those pvalues in that series, pmax is the one with the highest p-value. That's the first feature to go!
+        pmax = max(p)
+        feature_with_p_max = p.idxmax()
+    #This will iterate through until there is only features that havea p-value above 0.05
+        if(pmax>0.05):
+            cols.remove(feature_with_p_max)
+        else:
+    #Once there are no p-values that are larger than 0.05, the loop breaks and we're left with cols that made the cut
+            break
 
-selected_features_BE = cols
-print(selected_features_BE)
+    selected_features_BE = cols
+    print(selected_features_BE)
+
+
 #4
 # Write a function, lasso_cv_coef() that takes X_train and y_train as input and returns the coefficients 
 # for each feature, along with a plot of the features and their weights.
@@ -107,19 +111,34 @@ def lasso_cv_coef():
     pass
 
 #5
-# Write 3 functions
+# Write three functions
 
 #the first computes the number of optimum features (n) using rfe
-def find_optimum_with_rfe():
-    pass
+
+#Gonna need REFCV
+def find_optimum_with_rfe(model, X, y):
+    # Create recursive feature eliminator that scores features by mean squared errors
+    rfecv = RFECV(estimator=ols, step=1, scoring='neg_mean_squared_error')
+    #Transforming data using RFE
+    fit = rfe.fit(X,y)  
+    rfecv.fit(X, y)
+    rfecv.transform(X)
+    return rfecv.n_features_
+#This might be too lazy, cuz i ran this on some other data. It said use 8 of 9 features. I'd believe it. Maybe.
 
 # the second takes n as input and returns the top n features, 
-def find_top_n_features():
-    pass
+def find_top_n_features(model, n, X, y):
+    rfe = RFE(model, n)
+
+    #Transforming data using RFE
+    selected_features = rfe.fit(X,y) 
+    return selected_features.ranking_
+#This returns the ranking array. I need to match up the 1s to their column name and returns that
 
 # third takes the list of the top n features as input and returns a new X_train and X_test dataframe with 
 # those top features , recursive_feature_elimination() 
 # that computes the optimum number of features (n) and returns the top n features.
 
+#Looks like i'll just call the two previous functions and display them in a new format.
 def the_third_function():
     pass
