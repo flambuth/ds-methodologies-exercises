@@ -40,6 +40,8 @@ def select_kbest_freg(X_train, y_train, k_features):
     f_selector = SelectKBest(f_regression, k=k_features)
     f_selector.fit(X_train, y_train)
     f_support = f_selector.get_support()
+#get_support returns a True/False array this is k columns wide. Use it like a filter
+#So the f_features will filter out the False column. Return the column names that were True in f_support
     f_feature = X.loc[:,f_support].columns.tolist()
     return f_feature
 
@@ -70,13 +72,12 @@ def ols_backwards_elimination(X_train, y_train):
     cols = list(X_train.columns)
     pmax = 1
     while (len(cols)>0):
-        p= []
         X_1 = X_train[cols]
         X_1 = sm.add_constant(X_1)
         model = sm.OLS(y_train,X_1).fit()    
     #Looks like p is an array with each value being hte pvalue of each row.
     #Apparently model objects have a pvalues attribute
-        p = pd.Series(model.pvalues.values[1:],index = cols)
+        p = model.pvalues
     #Of those pvalues in that series, pmax is the one with the highest p-value. That's the first feature to go!
         pmax = max(p)
         feature_with_p_max = p.idxmax()
