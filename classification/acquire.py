@@ -11,7 +11,7 @@ def get_db_url(db):
     return f'mysql+pymysql://{env.user}:{env.password}@{env.host}/{db}'
 
 
-def get_iris():
+def get_iris_data():
         query = '''
         SELECT *
         FROM measurements AS m
@@ -19,7 +19,16 @@ def get_iris():
         species AS s ON s.species_id = m.species_id
         ;
         '''
-        df = pd.read_sql(query, get_db_url('iris'))
+        df = pd.read_sql(query, get_db_url('iris_db'))
+        return df
+
+def get_titanic_data():
+        query = '''
+        SELECT *
+        FROM passengers AS p
+        ;
+        '''
+        df = pd.read_sql(query, get_db_url('titanic_db'))
         return df
 
 # def get_zillow_bite():
