@@ -5,6 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.preprocessing import MinMaxScaler
 
 import acquire
 
@@ -45,7 +46,41 @@ def prep_iris():
 df_titanic = acquire.get_titanic_data()
 
 # Handle the missing values in the embark_town and embarked columns.
+df.embark_town.fillna('Other', inplace=True)
+
 # Remove the deck column.
+df_titanic.drop('deck', inplace=True, axis=1)
+
 # Use a label encoder to transform the embarked column.
+lab_enc = LabelEncoder()
+df_titanic.embarked.fillna('Unknown', inplace=True)
+lab_enc.fit(df_titanic.embarked)
+df_titanic.embarked = lab_enc.transform(df_titanic.embarked)
+
 # Scale the age and fare columns using a min max scaler. Why might this be beneficial? When might you not want to do this?
+scaler = MinMaxScaler()
+scaler2 = MinMaxScaler()
+
+scaler.fit(df_titanic[['fare']])
+df_titanic.fare = scaler.transform(df_titanic[['fare']])
+
+scaler2.fit(df_titanic[['age']])
+df_titanic.age = scaler.transform(df_titanic[['age']])
+
+
 # Create a function named prep_titanic that accepts the untransformed titanic data, and returns the data with the transformations above applied.
+def prep_titanic():
+    df_titanic = acquire.get_titanic_data()
+    df.embark_town.fillna('Other', inplace=True)
+    df_titanic.drop('deck', inplace=True, axis=1)
+    lab_enc = LabelEncoder()
+    df_titanic.embarked.fillna('Unknown', inplace=True)
+    lab_enc.fit(df_titanic.embarked)
+    df_titanic.embarked = lab_enc.transform(df_titanic.embarked)
+    scaler = MinMaxScaler()
+    scaler2 = MinMaxScaler()
+    scaler.fit(df_titanic[['fare']])
+    df_titanic.fare = scaler.transform(df_titanic[['fare']])
+    scaler2.fit(df_titanic[['age']])
+    df_titanic.age = scaler.transform(df_titanic[['age']])
+    return df_titanic
