@@ -44,10 +44,21 @@ def plot_viable_regressors(target, df):
         ax[i].set_ylabel('average_rate')
         ax[i].axhline(average_rate, ls='--', color='grey')
 
-def plot_violin(features, target, df):
+#Dom's recipe
+def doms_plot_violin(features, target, df):
     for descrete in df[features].select_dtypes([object,int]).columns.tolist():
         if df[descrete].nunique() <= 5:
             for continous in df[features].select_dtypes(float).columns.tolist():
+                sns.violinplot(descrete, continous, hue=target,
+                data=df, split=True, palette=['blue','orange'])
+                plt.title(continous + ' x ' + descrete)
+                plt.ylabel(continous)
+                plt.show()
+
+def plot_violins(target, df):
+    for descrete in df.select_dtypes([object,int]).columns.tolist():
+        if df[descrete].nunique() <= 5:
+            for continous in df.select_dtypes(float).columns.tolist():
                 sns.violinplot(descrete, continous, hue=target,
                 data=df, split=True, palette=['blue','orange'])
                 plt.title(continous + ' x ' + descrete)
