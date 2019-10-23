@@ -92,3 +92,30 @@ def prep_titanic():
     scaler.fit(df_titanic[['fare','age']])
     df_titanic.fare = scaler.transform(df_titanic[['fare', 'age']])
     return df_titanic, lab_enc
+
+def pick_viable_categories():
+    discretes = df_titanic.select_dtypes(include='object')
+    temp = []
+    for column in discretes:
+        columnSeriesObj = discretes[column]
+        if len(columnSeriesObj.unique()) < 4:
+            temp.append(columnSeriesObj.name)
+    return temp
+
+def plot_viable_categories():
+    x = pick_viable_categories()
+    _, ax = plt.subplots(nrows=1, ncols=len(x), figsize=(16,5))
+    survival_rate = df_titanic.survived.mean()
+    for i, feature in enumerate(x):
+        sns.barplot(feature, 'survived', data=df_titanic, ax=ax[i], alpha=.5)
+        ax[i].set_ylabel('Survival Rate')
+        ax[i].axhline(survival_rate, ls='--', color='grey')
+
+def pick_viable_regressors():
+    discretes = df_titanic.select_dtypes(include=['float64','int64'])
+    temp = []
+    for column in discretes:
+        columnSeriesObj = discretes[column]
+        if len(columnSeriesObj.unique()) < 4:
+            temp.append(columnSeriesObj.name)
+    return temp
