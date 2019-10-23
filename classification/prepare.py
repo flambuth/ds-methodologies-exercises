@@ -37,7 +37,7 @@ def prep_iris():
     labelencoder = LabelEncoder()
     labelencoder.fit(df_iris.species)
     df_iris.species = labelencoder.transform(df_iris.species)
-    return df_iris, labelencoder
+    return df_iris
 
 
 # Titanic Data
