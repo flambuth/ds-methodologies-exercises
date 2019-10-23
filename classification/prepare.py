@@ -37,7 +37,7 @@ def prep_iris():
     labelencoder = LabelEncoder()
     labelencoder.fit(df_iris.species)
     df_iris.species = labelencoder.transform(df_iris.species)
-    return df_iris
+    return df_iris, labelencoder
 
 
 # Titanic Data
@@ -69,26 +69,26 @@ scaler2.fit(df_titanic[['age']])
 df_titanic.age = scaler.transform(df_titanic[['age']])
 
 #I'd like to add an imputation of something into the age column. It has some null values.
+# def impute_titanic_age():
+#     imputer = Imputer(missing_values = 'NaN', strategy = 'mean', axis = 0)
+#     imputer = imputer.fit(df_titanic[['age']])
+#     df_titanic['age'] = imputer.transform(df_titanic[['age']])
+
 # imputer = Imputer(missing_values = 'NaN', strategy = 'mean', axis = 0)
-
 # imputer = imputer.fit(df_titanic[['age']])
-
-# df_titanic['age'] = imputer.transform(df_titanic[['age']])
+# imputer = imputer.fit(df_titanic[['age']])
 
 
 # Create a function named prep_titanic that accepts the untransformed titanic data, and returns the data with the transformations above applied.
 def prep_titanic():
     df_titanic = acquire.get_titanic_data()
     df_titanic.embark_town.fillna('Other', inplace=True)
+    df_titanic.embarked.fillna('Unknown', inplace=True)
     df_titanic.drop('deck', inplace=True, axis=1)
     lab_enc = LabelEncoder()
-    df_titanic.embarked.fillna('Unknown', inplace=True)
     lab_enc.fit(df_titanic.embarked)
     df_titanic.embarked = lab_enc.transform(df_titanic.embarked)
     scaler = MinMaxScaler()
-    scaler2 = MinMaxScaler()
-    scaler.fit(df_titanic[['fare']])
-    df_titanic.fare = scaler.transform(df_titanic[['fare']])
-    scaler2.fit(df_titanic[['age']])
-    df_titanic.age = scaler.transform(df_titanic[['age']])
-    return df_titanic
+    scaler.fit(df_titanic[['fare','age']])
+    df_titanic.fare = scaler.transform(df_titanic[['fare', 'age']])
+    return df_titanic, lab_enc
