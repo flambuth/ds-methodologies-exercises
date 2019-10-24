@@ -38,10 +38,10 @@ cr=(classification_report(y_train,y_pred))
 score = logit.score(X_test,y_test)
 
 # Print and clearly label the following: Accuracy, true positive rate, false positive rate, true negative rate, false negative rate, precision, recall, f1-score, and support.
-print(f"The true negatives: {blob[0][0]}")
-print(f"The true positives: {blob[1][1]}")
-print(f"The false negatives: {blob[1][0]}")
-print(f"The false positives: {blob[0][1]}")
+true_negative = blob[0][0]
+true_positive = blob[1][1]
+false_negative = blob[1][0]
+false_positive = blob[0][1]
 
 #All the correct predictions with all entries as the denominator.
 accuracy=((true_negative+true_positive)/len(y_train))
@@ -49,11 +49,29 @@ accuracy=((true_negative+true_positive)/len(y_train))
 recall=true_positive/(true_positive+false_negative)
 #All the corretly predicted positives, divied by that and the ones that the model was too eager to predict as positive
 precision=true_positive/(true_positive+false_positive)
+#Works horizontally along the actual positive. FP/FP+TN
+false_positive_rate=false_positive/(false_positive+true_negative)
 
+print(f"The accuracy is {accuracy}")
+print(f"The recall is {recall}")
+print(f"The precision is {precision}")
 
 
 # Look in the scikit-learn documentation to research the solver parameter. What is your best option(s) for the particular problem you are trying to solve and the data to be used?
 
 # Run through steps 2-4 using another solver (from question 5)
+def do_the_logRegression(X_train, y_train, my_solver):
+    logit = LogisticRegression(C=1,class_weight={1:2},random_state=123,solver=my_solver)
+    logit.fit(X_train, y_train)
+    y_pred = logit.predict(X_train)
+    y_pred_proba=logit.predict_proba(X_train)
+    score = logit.score(X_train,y_train)
+    return score
+
+solvers = ["lbfgs", "liblinear", "sag", "saga", "newton-cg"]
+for i in solvers:
+    print(f"The accuracy for {i} as the solver is {do_the_logRegression(X_train, y_train, i)}")
+
 
 # Which performs better on your in-sample data?
+#   All the non-saga solvers got the same score, of around .71
