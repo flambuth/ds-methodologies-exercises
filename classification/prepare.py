@@ -91,7 +91,7 @@ def prep_titanic():
     scaler = MinMaxScaler()
     scaler.fit(df_titanic[['fare','age']])
     df_titanic.fare = scaler.transform(df_titanic[['fare', 'age']])
-    return df_titanic, lab_enc
+    return df_titanic
 
 
 #USE df.nunique()<5 instead of this temp list
