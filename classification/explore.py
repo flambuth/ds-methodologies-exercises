@@ -7,7 +7,7 @@ import seaborn as sns
 
 #USE df.nunique()<5 instead of this temp list
 def pick_viable_categories(df):
-    discretes = df.select_dtypes(include=['object','int64')
+    discretes = df.select_dtypes(include=['object','int64'])
     temp = []
     for column in discretes:
         columnSeriesObj = discretes[column]
