@@ -4,6 +4,7 @@ import pandas as pd
 # Import visualization modules
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.impute import SimpleImputer
 
 #USE df.nunique()<5 instead of this temp list
 def pick_viable_categories(df):
@@ -76,3 +77,12 @@ def X_plot_violin(target, df):
             plt.title(i + ' x ' + j)
             plt.ylabel(i)
             plt.show()
+
+def impute_mode(train,test,column_list):
+    """ This should be done for the train and test, but separately. DO NOT FIT ON TEST. JUST TRANSFORM 
+    """
+    imputer = SimpleImputer(missing_values = 'NaN', strategy = 'most_frequent')
+    train[column_list] = imputer.fit_transform(train[column_list])
+    #JUST TRANSFORM. NOT fit_transform.
+    test[column_list] = imputer.transform(test[column_list][['age']])
+    return train, test
