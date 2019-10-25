@@ -89,8 +89,16 @@ y_pred_proba = clf.predict_proba(X_train)
 
 # Evaluate your in-sample results using the model score, confusion matrix, and classification report.
 conf_matx = confusion_matrix(y_train, y_pred)
-
+print(classification_report(y_train, y_pred))
 
 # Print and clearly label the following: Accuracy, true positive rate, false positive rate, true negative rate, false negative rate, precision, recall, f1-score, and support.
 # Run through steps 2-4 using entropy as your measure of impurity.
 # Which performs better on your in-sample data?
+
+def do_the_decisionTree():
+    clf = DecisionTreeClassifier(criterion='gini', max_depth=3, random_state=123)
+    clf.fit(X_train, y_train)
+    y_pred = clf.predict(X_train)
+    y_pred_proba = clf.predict_proba(X_train)
+    score = clf.score(X_train, y_train)
+    return score
