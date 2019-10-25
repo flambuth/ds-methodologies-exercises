@@ -1,6 +1,6 @@
 #Je achete le boeuf!
 #plotting imports
-%matplotlib inline
+#%matplotlib inline
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -14,7 +14,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
-from sklearn.tree import DecisionTreeClassifier, LogisticRegression
+from sklearn.tree import DecisionTreeClassifier, LogisticRegression, RandomForestClassifier
 
 
 #pipeline modules
@@ -97,10 +97,52 @@ print(classification_report(y_train, y_pred))
 # Run through steps 2-4 using entropy as your measure of impurity.
 # Which performs better on your in-sample data?
 
-def do_the_decisionTree():
-    clf = DecisionTreeClassifier(criterion='gini', max_depth=3, random_state=123)
+def do_the_decisionTree(my_criterion):
+    clf = DecisionTreeClassifier(criterion=my_criterion, max_depth=3, random_state=123)
     clf.fit(X_train, y_train)
     y_pred = clf.predict(X_train)
     y_pred_proba = clf.predict_proba(X_train)
     score = clf.score(X_train, y_train)
     return score
+
+#############
+#Random Forest
+
+# Fit the Random Forest classifier to your training sample and transform (i.e. make predictions on the training sample) 
+# setting the random_state accordingly and setting min_samples_leaf = 1 and max_depth = 20.
+rf = RandomForestClassifier(bootstrap=True, 
+                            class_weight=None, 
+                            criterion='gini',
+                            min_samples_leaf=1,
+                            n_estimators=100,
+                            max_depth=20, 
+                            random_state=123)
+
+rf.fit(X_train, y_train)
+y_pred = rf.predict(X_train)
+y_pred_proba = rf.predict_proba(X_train)
+
+# Evaluate your results using the model score, confusion matrix, and classification report.
+print('Accuracy of random forest classifier on training set: {:.2f}'
+     .format(rf.score(X_train, y_train)))
+
+
+# Print and clearly label the following: Accuracy, true positive rate, false positive rate, true negative rate, false negative rate, precision, recall, f1-score, and support.
+print(classification_report(y_train, y_pred, output_dict=True))
+class_report = classification_report(y_train, y_pred, output_dict=True)
+class_report['1']
+# Run through steps increasing your min_samples_leaf to 5 and decreasing your max_depth to 3.
+rf2 = RandomForestClassifier(bootstrap=True, 
+                            class_weight=None, 
+                            criterion='gini',
+                            min_samples_leaf=5,
+                            n_estimators=100,
+                            max_depth=3, 
+                            random_state=123)
+rf2.fit(X_train, y_train)
+y_pred2 = rf2.predict(X_train)
+y_pred_proba2 = rf2.predict_proba(X_train)
+
+# What are the differences in the evaluation metrics? Which performs better on your in-sample data? Why?
+class_report2 = classification_report(y_train, y_pred2, output_dict=True)
+class_report2['1']
