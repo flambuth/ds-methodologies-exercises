@@ -15,7 +15,7 @@ import env
 def get_connection(db, user=env.user, host=env.host, password=env.password):
     return f'mysql+pymysql://{user}:{password}@{host}/{db}'
 
-def get_zillow_data():
+def get_zillow_bite():
     query = '''
     SELECT prop.*, pred.logerror, pred.transactiondate
     FROM predictions_2017 AS pred
@@ -24,6 +24,21 @@ def get_zillow_data():
     AND (unitcnt = 1 OR unitcnt IS NULL)
     ;
     '''
-    return pd.read_sql(query, get_connection('zillow'))
+    df = pd.read_sql(query, get_connection('zillow'))
+    # df.sort_values(by='transactiondate', ascending=False)
+    # df.drop_duplicates(subset ="parcelid", keep = 'first', inplace = True) 
+    return df
 
-# 
+def get_zillow_chunk():
+    query = '''
+    SELECT prop.*, pred.logerror, pred.transactiondate
+    FROM predictions_2017 AS pred
+    LEFT JOIN properties_2017 AS prop  USING(parcelid)
+    WHERE (bedroomcnt > 0 AND bathroomcnt > 0 AND calculatedfinishedsquarefeet > 500 AND latitude IS NOT NULL AND longitude IS NOT NULL) 
+    AND (unitcnt = 1 OR unitcnt IS NULL)
+    ;
+    '''
+    df = pd.read_sql(query, get_connection('zillow'))
+    df.sort_values(by='transactiondate', ascending=False)
+    df.drop_duplicates(subset ="parcelid", keep = 'first', inplace = True) 
+    return df
