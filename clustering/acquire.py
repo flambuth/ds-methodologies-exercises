@@ -45,3 +45,12 @@ def get_zillow_chunk():
     df.sort_values(by='transactiondate', ascending=False)
     df.drop_duplicates(subset ="parcelid", keep = 'first', inplace = True) 
     return df
+
+def get_mall_customers():
+    query = '''
+    SELECT *
+    FROM customers
+    ;
+    '''
+    df = pd.read_sql(query, get_connection('mall_customers'))
+    return df 
