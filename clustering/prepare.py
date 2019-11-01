@@ -1,4 +1,6 @@
 import pandas as pd
+import numpy as np
+from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder, Imputer
 from sklearn.model_selection import train_test_split
 
@@ -40,5 +42,8 @@ def make_test_train(X,y):
 # impute with mean, median, mode
 # drop row/column
 
-def impute_mode():
-    pass
+def impute_median(column):
+    median = column.median()
+    column.fillna(median, inplace=True)
+    return column
+
