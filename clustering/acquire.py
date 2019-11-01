@@ -1,6 +1,7 @@
 import pandas as pd
 import env
 
+# 1
 # Acquire data from mySQL using the python module to connect and query. You will want to end with a single 
 # dataframe. Make sure to include: the logerror, all fields related to the properties that are available. 
 # You will end up using all the tables in the database.
@@ -15,7 +16,10 @@ import env
 def get_connection(db, user=env.user, host=env.host, password=env.password):
     return f'mysql+pymysql://{user}:{password}@{host}/{db}'
 
-def get_zillow_bite():
+def get_zillow_singles():
+    #SQL cndition have been increased to widdle away homes that are not unitcnt of 1 OR null
+    #a minimum of 500 sqft cuts off the inhosptiable homes
+    #kept the geographical requirments
     query = '''
     SELECT prop.*, pred.logerror, pred.transactiondate
     FROM predictions_2017 AS pred
