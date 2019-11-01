@@ -16,25 +16,24 @@ def find_upper_outliers(column):
 
 def find_upper_outliers(column):
     '''
-    Give it a Pandas Series/Column. This will return the values that are 1.5X above the .75 quantile
+    Give it a Pandas Series/Column. This will return a boolean mask series of values that 
+    are 1.5X above the .75 quantile
     '''
     #Using the quantile function of a Series, lower and upper side of the IQR box is defined.
     q1, q3 = column.quantile([.25, .75])
+    iqr = q3 - q1
     #IQR is all the values in the box made bewteen .25-.75 of the data. The middle 50.
     
-    upper_bound = q3 + k * iqr
-    return s.apply(lambda x: max([x - upper_bound, 0]))
+    return column[column < (q3 + 1.5*iqr)]
 
-def add_upper_outlier_columns(df, k):
+def find_lower_outliers(column):
     '''
-    Give it a Pandas Series/Column. This will return the values that are 1.5X below the .25 quantile
-
+    Give it a Pandas Series/Column. This will return a boolean mask series of values that 
+    are 1.5X above the .75 quantile
     '''
-    # outlier_cols = {col + '_outliers': get_upper_outliers(df[col], k)
-    #                 for col in df.select_dtypes('number')}
-    # return df.assign(**outlier_cols)
-
-    for col in df.select_dtypes('number'):
-        df[col + '_outliers'] = get_upper_outliers(df[col], k)
-
-    return df
+    #Using the quantile function of a Series, lower and upper side of the IQR box is defined.
+    q1, q3 = column.quantile([.25, .75])
+    iqr = q3 - q1
+    #IQR is all the values in the box made bewteen .25-.75 of the data. The middle 50.
+    
+    return column[column < (q1 - 1.5*iqr)]
