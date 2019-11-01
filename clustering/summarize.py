@@ -68,10 +68,11 @@ def handle_missing_rows(df, row_requirement):
     df = df[df.pct_cols_missing < row_requirement]   
     return df
 
-
-    return rows_missing
-
 def handle_missing_columns(df, col_requirement):
+    """
+    Should take a dataframe. This will mutate it to return a dataframe with the columns that meet the minimum
+    set in the given parameter.
+    """
     #creates a series that has columns as index. The values are the amount of null rows.
     num_missing = df.isnull().sum()
     #The df is is df.shape[0] columns long
@@ -82,17 +83,7 @@ def handle_missing_columns(df, col_requirement):
     good_columns = pct_missing[pct_missing < col_requirement] 
     return df[good_columns.index]
 
-# def handle_missing_columns(df, col_requirement):
-#     """
-#     Should take a dataframe, and two floats representing the not-null percentage of each needs to be.
-#     """
-#     #Makes a series with same index as df. The values are the summed nulls in each row.
-#     num_cols_missing = df.isnull().sum(axis=1)
-#     #df.shape[1] is the width, the amount of columns. So nulls/columns is the null percentage
-#     pct_cols_missing = df.isnull().sum(axis=1)/df.shape[1]*100
-#     #Makes a dataframe that has the previous Series as columns.
-#     row_missing = pd.DataFrame()
-#     row_missing['pct_cols_missing'] = pct_cols_missing 
-#     row_missing['num_cols_missing'] = num_cols_missing 
-#     # rows_missing = pd.DataFrame({'num_cols_missing': num_cols_missing, 'pct_cols_missing': pct_cols_missing}).reset_index().groupby(['num_cols_missing','pct_cols_missing']).count().rename(index=str, columns={'index': 'num_rows'}).reset_index()
-    
+def handle_missing_nulls(df,cols_req,rows_req):
+    df = handle_missing_columns(df,cols_req)
+    df = handle_missing_columns(df, rows_req)
+    return df
