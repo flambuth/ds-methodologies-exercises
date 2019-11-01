@@ -1,18 +1,6 @@
-def find_upper_outliers(column):
-    '''
-    Given a series and a cutoff value, k, returns the upper outliers for the
-    series.
-
-    The values returned will be either 0 (if the point is not an outlier), or a
-    number that indicates how far away from the upper bound the observation is.
-    '''
-    #Using the quantile function of a Series, lower and upper side of the IQR box is defined.
-    q1, q3 = column.quantile([.25, .75])
-    #IQR is all the values in the box made bewteen .25-.75 of the data. The middle 50.
-    iqr = q3 - q1
-    
-    upper_bound = q3 + k * iqr
-    return s.apply(lambda x: max([x - upper_bound, 0]))
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder, Imputer
+from sklearn.model_selection import train_test_split
 
 def find_upper_outliers(column):
     '''
@@ -37,3 +25,20 @@ def find_lower_outliers(column):
     #IQR is all the values in the box made bewteen .25-.75 of the data. The middle 50.
     
     return column[column < (q1 - 1.5*iqr)]
+
+#Maybe a function that will iterate through all columns of a dataframe and prunes off the outliers.
+#... maybe
+# def remove_outliers(df):
+
+def make_test_train(X,y):
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=123)
+    return X_train, X_test, y_train, y_test
+
+# Decide how to handle the remaining missing values
+
+# fill with constant value
+# impute with mean, median, mode
+# drop row/column
+
+def impute_mode():
+    pass
