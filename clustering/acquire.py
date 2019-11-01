@@ -34,8 +34,7 @@ def get_zillow_chunk():
     SELECT prop.*, pred.logerror, pred.transactiondate
     FROM predictions_2017 AS pred
     LEFT JOIN properties_2017 AS prop  USING(parcelid)
-    WHERE (bedroomcnt > 0 AND bathroomcnt > 0 AND calculatedfinishedsquarefeet > 500 AND latitude IS NOT NULL AND longitude IS NOT NULL) 
-    AND (unitcnt = 1 OR unitcnt IS NULL)
+    WHERE (latitude IS NOT NULL AND longitude IS NOT NULL) 
     ;
     '''
     df = pd.read_sql(query, get_connection('zillow'))
