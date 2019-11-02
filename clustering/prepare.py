@@ -32,6 +32,8 @@ def find_lower_outliers(column):
 #... maybe
 # def remove_outliers(df):
 
+
+
 def make_test_train(X,y):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=123)
     return X_train, X_test, y_train, y_test
