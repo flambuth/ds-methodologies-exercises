@@ -33,6 +33,8 @@ def get_zillow_singles():
     # df.drop_duplicates(subset ="parcelid", keep = 'first', inplace = True) 
     return df
 
+
+#acquires a chunk that is unique records, using most recent transactionb
 def get_zillow_chunk():
     query = '''
     SELECT prop.*, pred.logerror, pred.transactiondate

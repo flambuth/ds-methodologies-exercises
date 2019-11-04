@@ -49,3 +49,32 @@ def impute_median(column):
     column.fillna(median, inplace=True)
     return column
 
+def handle_missing_rows(df, row_requirement):
+    """
+    Should take a dataframe. This will mutate it to return a dataframe with the rows that meet the minimum
+    set in the given parameter.
+    """
+
+    df['pct_cols_missing'] = df.isnull().sum(axis=1)/df.shape[1]
+    df = df[df.pct_cols_missing < row_requirement]   
+    return df
+
+def handle_missing_columns(df, col_requirement):
+    """
+    Should take a dataframe. This will mutate it to return a dataframe with the columns that meet the minimum
+    set in the given parameter.
+    """
+    #creates a series that has columns as index. The values are the amount of null rows.
+    num_missing = df.isnull().sum()
+    #The df is is df.shape[0] columns long
+    rows = df.shape[0]
+    #nulls in the column by the columns size
+    pct_missing = num_missing/rows
+    #A data frame that uses those two Series as columns.
+    good_columns = pct_missing[pct_missing < col_requirement] 
+    return df[good_columns.index]
+
+def handle_missing_nulls(df,cols_req,rows_req):
+    df = handle_missing_columns(df,cols_req)
+    df = handle_missing_columns(df, rows_req)
+    return df
