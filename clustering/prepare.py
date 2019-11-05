@@ -4,6 +4,15 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder, Imputer
 from sklearn.model_selection import train_test_split
 
+# dautil.stats.outliers(arr, method='IQR', factor=1.5, percentiles=(5, 95))¶
+# LOOK THAT UP
+# DAUTIL module
+
+# def filter_outliers(a): b = a.copy()
+# bmin, bmax = dl.stats.outliers(b) b[bmin > b] = np.nan
+# b[b > bmax] = np.nan
+# return b
+
 def find_upper_outliers(column):
     '''
     Give it a Pandas Series/Column. This will return a boolean mask series of values that 

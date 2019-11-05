@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 import seaborn as sns
 from sklearn.model_selection import learning_curve
-%matplotlib inline
+# %matplotlib inline
 
 import acquire
 import summarize
