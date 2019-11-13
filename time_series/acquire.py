@@ -84,4 +84,6 @@ def merge_dataframes():
     merged_df2 = pd.merge(merged_df, items, how='inner', left_on = 'item', right_on = 'item_id')
     return merged_df2
 
-merged_df = pd.merge(sales, stores, how='inner', left_on = 'store', right_on = 'store_id')
+# merged_df = pd.merge(sales, stores, how='inner', left_on = 'store', right_on = 'store_id')
+
+# export_csv = merged_df2.to_csv (r'/Users/fredricklambuth/codeup-data-science/ds-methodologies-exercises/time_series/merged.csv', index = None, header=True)
