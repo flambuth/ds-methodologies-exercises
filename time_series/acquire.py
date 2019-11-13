@@ -6,8 +6,26 @@ import pandas as pd
 
 base_url = 'https://python.zach.lol'
 
-response = requests.get('https://python.zach.lol/api/v1/items')
+items_url = requests.get('https://python.zach.lol/api/v1/items')
+stores_url = requests.get('https://python.zach.lol/api/v1/stores')
 
-data = response.json()   
+items_data = items_url.json()
+stores_data = stores_url.json() 
 
-pd.DataFrame.from_dict(data)
+items = pd.DataFrame(items_data['payload']['items'])
+
+#going through the 'next pages' to get 20 items per page
+response = requests.get(base_url + items_data['payload']['next_page'])
+data = response.json()
+items = pd.concat([items, pd.DataFrame(data['payload']['items'])]).reset_index()
+
+response = requests.get(base_url + items_data['payload']['next_page'])
+data = response.json()
+items = pd.concat([items, pd.DataFrame(data['payload']['items'])]).reset_index()
+#Items is now a 60 row deep data frame. but with some weird columns
+
+
+
+# Do the same thing, but for stores.
+stores = pd.DataFrame(stores_data['payload']['stores'])
+
