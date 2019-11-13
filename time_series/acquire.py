@@ -29,3 +29,23 @@ items = pd.concat([items, pd.DataFrame(data['payload']['items'])]).reset_index()
 # Do the same thing, but for stores.
 stores = pd.DataFrame(stores_data['payload']['stores'])
 
+def get_sales():
+    response = requests.get(base_url + "/api/v1/sales?page=1")
+    data = response.json()
+    sales_df = pd.DataFrame(data['payload']['sales'])
+    
+    total_pages = data['payload']['max_page']
+
+    for i in range(2, total_pages+1): 
+        response = requests.get(base_url + f"/api/v1/sales?page={i}")
+        data = response.json()
+        sales_df = pd.concat([sales_df, pd.DataFrame(data['payload']['sales'])])
+        
+    return sales_df
+
+def save_sales_as_csv():
+    blob = get_sales()
+    export_csv = blob.to_csv (r'/Users/fredricklambuth/codeup-data-science/ds-methodologies-exercises/time_series/sales.csv', index = None, header=True)
+
+# This comes out to 183. So we'll need to concat 183 times
+# data['payload']['max_page']
