@@ -72,4 +72,16 @@ def save_stores_as_csv():
     blob = get_stores_df()
     export_csv = blob.to_csv (r'/Users/fredricklambuth/codeup-data-science/ds-methodologies-exercises/time_series/stores.csv', index = None, header=True)
 
+def save_items_as_csv():
+    blob = get_items_df()
+    export_csv = blob.to_csv (r'/Users/fredricklambuth/codeup-data-science/ds-methodologies-exercises/time_series/items.csv', index = None, header=True)
 
+def merge_dataframes():
+    sales = get_sales()
+    items = get_items_df()
+    stores = get_stores_df()
+    merged_df = pd.merge(sales, stores, how='inner', left_on = 'store', right_on = 'store_id')
+    merged_df2 = pd.merge(merged_df, items, how='inner', left_on = 'item', right_on = 'item_id')
+    return merged_df2
+
+merged_df = pd.merge(sales, stores, how='inner', left_on = 'store', right_on = 'store_id')
