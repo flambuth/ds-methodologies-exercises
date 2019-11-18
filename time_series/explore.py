@@ -20,10 +20,7 @@ stores = pd.read_csv('stores.csv')
 
 merged_df = pd.merge(sales, stores, how='inner', left_on = 'store', right_on = 'store_id')
 df_final = pd.merge(merged_df, items, how='inner', left_on = 'item', right_on = 'item_id')
-df_daily = df2.sale_amount.resample('D').sum().reset_index()
-
-
-
+df2 = prepare.prep_store_data(df_final)
 
 # Plot a time series decomposition.
 # Create a lag plot (day over day).
@@ -31,23 +28,34 @@ df_daily = df2.sale_amount.resample('D').sum().reset_index()
 
 # 1
 # Split your data into train and test using the sklearn.model_selection.TimeSeriesSplit method.
+df_daily = df2.sale_amount.resample('D').sum().reset_index()
 X = df_daily.sale_date
 y = df_daily.sale_amount
-tss = TimeSeriesSplit(n_splits=5, max_train_size=None)
-
 tss = TimeSeriesSplit(n_splits=5, max_train_size=None)
 
 for train_index, test_index in tss.split(X):
     X_train, X_test = X[train_index], X[test_index]
     y_train, y_test = y[train_index], y[test_index]
 
+
 # 2
 # Validate your splits by plotting X_train and y_train.
 plt.plot(X_train, y_train)
 plt.plot(X_test, y_test)
 
+# 2.X
+#Using a 2016/2017 split for train and test. Getting the daily average as the time unit.
+aggregation = 'sum'
+train = df_final[:'2016'].sale_amount.resample('D').agg(aggregation)
+test = df_final['2017':].sale_amount.resample('D').agg(aggregation)
+
 # 3
 # Plot the weekly average & the 7-day moving average. Compare the 2 plots.
+train.resample('W').mean().plot(figsize=(12, 4))
+plt.show()
+
+train.rolling(5).mean().plot(figsize=(12, 4))
+plt.show()
 
 # 4
 # Plot the daily difference. Observe whether usage seems to vary drastically from day to day or has more of a smooth transition.
