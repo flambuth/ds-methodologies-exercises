@@ -56,5 +56,8 @@ def determine_normality(df,column,n_stds=1):
     std_dev_range = ((series_mean - n_stds*series_std),(series_mean + n_stds*series_std ))
     within_n_stds = series[series.between(std_dev_range[0],std_dev_range[1], inclusive = True)]
     percentage = len(within_n_stds)/len(series)
-    print(f'{percentage} of values are within {n_stds} standard deviations from {series_mean}.')
+    print(f'{percentage} of {series.name} values are within {n_stds} standard deviations from {series_mean}.')
     # return within_n_stds 
+
+for i in df.select_dtypes('number'): 
+    determine_normality(df,i) 
