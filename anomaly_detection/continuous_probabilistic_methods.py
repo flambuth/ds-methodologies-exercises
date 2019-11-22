@@ -49,9 +49,12 @@ for i in df.select_dtypes('number'):
 #SIGMAS
 
 
-def determine_sigma_outliers(series,n_stds=1):
+def determine_normality(df,column,n_stds=1):
+    series = df[column]
     series_std = series.std()
     series_mean = series.mean()
-    std_dev_range = ((series_mean - series_std),(series_mean + series_std ))
+    std_dev_range = ((series_mean - n_stds*series_std),(series_mean + n_stds*series_std ))
     within_n_stds = series[series.between(std_dev_range[0],std_dev_range[1], inclusive = True)]
-    return within_n_stds 
+    percentage = len(within_n_stds)/len(series)
+    print(f'{percentage} of values are within {n_stds} standard deviations from {series_mean}.')
+    # return within_n_stds 
