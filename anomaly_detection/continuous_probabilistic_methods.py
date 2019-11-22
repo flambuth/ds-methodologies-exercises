@@ -59,5 +59,6 @@ def determine_normality(df,column,n_stds=1):
     print(f'{percentage} of {series.name} values are within {n_stds} standard deviations from {series_mean}.')
     # return within_n_stds 
 
+#This will print out the amount of column values that are within one standard deviation from their means.
 for i in df.select_dtypes('number'): 
     determine_normality(df,i) 
