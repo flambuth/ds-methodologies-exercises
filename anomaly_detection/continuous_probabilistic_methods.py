@@ -36,6 +36,9 @@ for i in df.select_dtypes('number'):
 # Using the multiplier of 3, IQR Range Rule, and the lower and upper bounds, identify the outliers below the 
 # lower bound in each colum of lemonade.csv. Do these lower outliers make sense?Which outliers should be kept?
 
+for i in df.select_dtypes('number'): 
+    get_lower_and_upper_bounds(df[i],multiplier=3) 
+
 # 4
 # Using the multiplier of 3, IQR Range Rule, and the lower and upper bounds, identify the outliers above the 
 # upper_bound in each colum of lemonade.csv. Do these upper outliers make sense? Which outliers should be kept?
