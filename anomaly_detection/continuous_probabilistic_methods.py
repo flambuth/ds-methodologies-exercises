@@ -42,3 +42,16 @@ for i in df.select_dtypes('number'):
 # 4
 # Using the multiplier of 3, IQR Range Rule, and the lower and upper bounds, identify the outliers above the 
 # upper_bound in each colum of lemonade.csv. Do these upper outliers make sense? Which outliers should be kept?
+
+
+
+##########
+#SIGMAS
+
+
+def determine_sigma_outliers(series,n_stds=1):
+    series_std = series.std()
+    series_mean = series.mean()
+    std_dev_range = ((series_mean - series_std),(series_mean + series_std ))
+    within_n_stds = series[series.between(std_dev_range[0],std_dev_range[1], inclusive = True)]
+    return within_n_stds 
