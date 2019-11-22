@@ -12,7 +12,7 @@ def get_lower_and_upper_bounds(series, multiplier=1.5):
     iqr = q3-q1
     upper_bounds = q3 + (iqr * multiplier)
     lower_bounds = q1 - (iqr * multiplier) 
-    print(f"Any value in {series.name} above {upper_bounds} and lower than {lower_bounds} are considered outliers.")
+    print(f"Any value in {series.name} {multiplier}x above {upper_bounds} and lower than {lower_bounds} are considered outliers.")
     return upper_bounds, lower_bounds
 
 df = pd.read_csv('lemonade.csv')
@@ -26,7 +26,7 @@ df = pd.read_csv('lemonade.csv')
 # Do these lower outliers make sense? Which outliers should be kept?
 
 for i in df.select_dtypes('number'): 
-    get_lower_and_upper_bounds(df[i]) 
+    get_lower_and_upper_bounds(df[i], 3) 
 
 # 2
 # Use the IQR Range Rule and the upper and lower bounds to identify the upper outliers of each column of 
