@@ -16,3 +16,8 @@ from bs4 import BeautifulSoup
 
 def get_blog_articles():
     pass
+
+#That parameter was created by using the Inspet Element on the page. Right clicking on the element brings up the 
+#option to Copy Selctor. Then paste that inside the (). Makes an iterable. The [0] index has a method that cuts
+#off the HTML and just gives you a string.
+soup.select(".mk-single-content > p:nth-child(1)")[0].get_text() 
