@@ -29,3 +29,10 @@ sopa.find_all('p')
 #THE GOLDEN GOOSE!
 for i in sopa.find_all('p'): 
     ...:     print(i.get_text()) 
+
+#This might bear fruit
+sopa.find_all('p', class_='mk-single-content')  
+
+#Another fruit possiblity
+#Has more than just the content from the golden goose
+sopa.find_all(id="954").get_text() 
