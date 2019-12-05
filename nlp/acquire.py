@@ -14,8 +14,8 @@ def get_codeup_webcontent(url):
     sopa = BeautifulSoup(response.content, 'html.parser')
     for i in sopa.find_all('p'):
         #print(i.get_text())
-        content.append(i.get_text())
-    title = sopa.title.get_text()
+        content.append(str(i.text))
+    title = sopa.title.string
     a = {'Title': title, 'Content': content}
     return a
 
