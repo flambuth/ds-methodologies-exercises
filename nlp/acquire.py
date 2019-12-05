@@ -14,23 +14,22 @@ from bs4 import BeautifulSoup
 # https://codeup.com/10-tips-to-crush-it-at-the-sa-tech-job-fair/
 # https://codeup.com/competitor-bootcamps-are-closing-is-the-model-in-danger/
 
-#The header will avoid that 403 error
-url = 'https://codeup.com/codeups-data-science-career-accelerator-is-here/'
-headers = {'User-Agent': 'Codeup Bayes Data Science'} # codeup.com doesn't like our default user-agent
-response = get(url, headers=headers)
+# #The header will avoid that 403 error
+# url = 'https://codeup.com/codeups-data-science-career-accelerator-is-here/'
+# headers = {'User-Agent': 'Codeup Bayes Data Science'} # codeup.com doesn't like our default user-agent
+# response = get(url, headers=headers)
 
 def get_blog_articles():
-    pass
+    url = 'https://codeup.com/codeups-data-science-career-accelerator-is-here/'
+    headers = {'User-Agent': 'Codeup Bayes Data Science'} # codeup.com doesn't like our default user-agent
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    page1_text = soup.select(".mk-single-content")[0].get_text()
+    return page1_text
 
-pageX = requests.get('https://codeup.com/codeups-data-science-career-accelerator-is-here/', headers=headers)  
-
-soup = BeautifulSoup(pageX.content, 'html.parser')
-
-
-#That parameter was created by using the Inspet Element on the page. Right clicking on the element brings up the 
-#option to Copy Selctor. Then paste that inside the (). Makes an iterable. The [0] index has a method that cuts
-#off the HTML and just gives you a string.
-soup.select(".mk-single-content > p:nth-child(1)")[0].get_text() 
-
-#Broadened the search
-page1_text = soup.select(".mk-single-content")[0].get_text()                 
+def get_stuff(url):
+    headers = {'User-Agent': 'Codeup Bayes Data Science'} # codeup.com doesn't like our default user-agent
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    page1_text = soup.select(".mk-single-content")[0].get_text()
+    return page1_text
