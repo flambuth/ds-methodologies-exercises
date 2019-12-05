@@ -36,3 +36,29 @@ sopa.find_all('p', class_='mk-single-content')
 #Another fruit possiblity
 #Has more than just the content from the golden goose
 sopa.find_all(id="954").get_text() 
+
+
+def get_blog_articles():
+    url = 'https://codeup.com/codeups-data-science-career-accelerator-is-here/'
+    headers = {'User-Agent': 'Codeup Bayes Data Science'} # codeup.com doesn't like our default user-agent
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    page1_text = soup.select(".mk-single-content")[0].get_text()
+    return page1_text
+
+def get_stuff(url):
+    headers = {'User-Agent': 'Codeup Bayes Data Science'} # codeup.com doesn't like our default user-agent
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    page1_text = soup.select(".mk-single-content")[0].get_text()
+    return page1_text
+
+headers = {'User-Agent': 'Codeup Bayes Data Science'}
+laFleur = requests.get("https://codeup.com/data-science-myths/", headers=headers)
+sopa = BeautifulSoup(laFleur.content, 'html.parser')
+sopa
+sopa.find_all('p')
+
+#THE GOLDEN GOOSE!
+for i in sopa.find_all('p'): 
+    ...:     print(i.get_text()) 
