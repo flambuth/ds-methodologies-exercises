@@ -39,3 +39,33 @@ def make_dict_of_web_content():
         pages.append(page)
     return pages
 
+#2
+########
+# News Articles
+
+
+# Write a function that scrapes the news articles for the following topics:
+
+# Business
+# Sports
+# Technology
+# Entertainment
+# The end product of this should be a function named get_news_articles that returns a list of dictionaries, 
+# where each dictionary has this shape:
+# {
+#     'title': 'The article title',
+#     'content': 'The article content',
+#     'category': 'business' # for example
+# }
+news_http = requests.get('https://inshorts.com/en/read').text
+soupe = BeautifulSoup(news_http, 'html.parser')
+
+#TITLE
+soupe.find('span', itemprop='headline').text 
+
+#'CONTENT'
+#Finds first paragraph of news content
+soupe.find('div', class_='news-card-content news-right-box').text 
+
+
+#CATEGORY
