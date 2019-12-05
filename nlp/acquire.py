@@ -69,3 +69,13 @@ soupe.find('div', class_='news-card-content news-right-box').text
 
 
 #CATEGORY
+categories = ['Business', 'Sports', 'Technology', 'Entertainment']
+
+def get_news_articles():
+    categories = ['Business', 'Sports', 'Technology', 'Entertainment']
+    for category in categories:
+        response = requests.get(f'https://inshorts.com/en/read/{category}').text
+        soup = BeautifulSoup(response, 'html.parser')
+        print(f"Category: {category}")
+        print(soup.find('span', itemprop='headline').text)
+        print(soup.find('div', class_='news-card-content news-right-box').text)
