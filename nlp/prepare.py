@@ -21,6 +21,7 @@ def basic_clean(text):
     text = text.lower()
     text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('utf-8', 'ignore')
     text = re.sub(r"[^a-z0-9'\s]", '', text)
+    text = re.sub(r"[\r|\n|\r\n]+", ' ', text)
     return text 
 
 def tokenize(text):
@@ -35,7 +36,6 @@ def stem(text):
     accept some text and return the text after applying stemming to all the words.
     """
     ps = nltk.porter.PorterStemmer()
-
     stems = [ps.stem(word) for word in text.split()]
     article_stemmed = ' '.join(stems)
     return article_stemmed
