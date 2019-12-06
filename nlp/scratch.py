@@ -99,3 +99,96 @@ def get_blog_posts():
         return pd.read_csv(filename)
     else:
         return make_new_request()
+
+def get_news_articles():
+    categories = ['Business', 'Sports', 'Technology', 'Entertainment']
+    #OUTER LOOP is going through the 4 categories. They're attached at the end of the URL.
+    
+    list_of_dicts = []
+    
+    for category in categories:
+        #The response will grab as many articles that are loaded when hitting the URL
+        headers = {'user-agent': 'Fred'}
+        response = requests.get(f'https://inshorts.com/en/read/{category}', headers=headers).text
+        soup = BeautifulSoup(response, 'html.parser')
+
+        #The div class news-card holds all the information we want.
+        articles = soup.select('.news-card')
+
+        #Inner loops, (within the outer loop of Category) will find the class inside the news-card div.
+        for article in articles: 
+            #We grab the first [0] appearance of each of the tags we're selecting. Assigning each to a variable.
+            title = article.select("[itemprop='headline']")[0].get_text()
+            content = article.select("[itemprop='articleBody']")[0].get_text()
+            author = article.select(".author")[0].get_text()
+            published_date = article.select(".time")[0]["content"]
+            category = category
+            #Those string variables will each become a value in a dictionary. 
+            article_data = {
+                'title': title,
+                'content': content,
+                'category': category,
+                'author': author,
+                'published_date': published_date,
+            }
+            #Each dictonary made in the INNER LOOP gets appended.
+            list_of_dicts.append(article_data)
+
+    #That list we were making down at the INNER LOOP level. Thats the final product 
+    return list_of_dicts
+
+def get_articles_from_topic(url):
+    headers = {'user-agent': 'Codeup Bayes Instructor Example'}
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    output = []
+
+    articles = soup.select(".news-card")
+
+    for article in articles: 
+        title = article.select("[itemprop='headline']")[0].get_text()
+        content = article.select("[itemprop='articleBody']")[0].get_text()
+        author = article.select(".author")[0].get_text()
+        published_date = article.select(".time")[0]["content"]
+        category = response.url.split("/")[-1]
+
+        article_data = {
+            'title': title,
+            'content': content,
+            'category': category,
+            'author': author,
+            'published_date': published_date,
+        }
+        output.append(article_data)
+
+
+    return output
+
+def get_articles_by_category():
+    categories = ['business', 'sports', 'technology', 'entertainment']
+    headers = {'user-agent': 'Codeup Bayes Instructor Example'}
+    output = []
+    for category in categories:
+        response = requests.get(f"https://inshorts.com/en/read/{category}", headers=headers)
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+        articles = soup.select(".news-card")
+
+        for article in articles: 
+            title = article.select("[itemprop='headline']")[0].get_text()
+            content = article.select("[itemprop='articleBody']")[0].get_text()
+            author = article.select(".author")[0].get_text()
+            published_date = article.select(".time")[0]["content"]
+            category = category
+
+            article_data = {
+                'title': title,
+                'content': content,
+                'category': category,
+                'author': author,
+                'published_date': published_date,
+            }
+            output.append(article_data)
+
+    return output

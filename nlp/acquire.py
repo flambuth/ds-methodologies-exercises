@@ -66,25 +66,31 @@ def aquire_all_pages():
 #     'content': 'The article content',
 #     'category': 'business' # for example
 # }
-news_http = requests.get('https://inshorts.com/en/read').text
-soupe = BeautifulSoup(news_http, 'html.parser')
 
-#TITLE
-soupe.find('span', itemprop='headline').text 
-
-#'CONTENT'
-#Finds first paragraph of news content
-soupe.find('div', class_='news-card-content news-right-box').text 
-
-
-#CATEGORY
-categories = ['Business', 'Sports', 'Technology', 'Entertainment']
-
-def get_news_articles():
-    categories = ['Business', 'Sports', 'Technology', 'Entertainment']
+def get_articles_by_category():
+    categories = ['business', 'sports', 'technology', 'entertainment']
+    headers = {'user-agent': 'Codeup Bayes Instructor Example'}
+    output = []
     for category in categories:
-        response = requests.get(f'https://inshorts.com/en/read/{category}').text
-        soup = BeautifulSoup(response, 'html.parser')
-        print(f"Category: {category}")
-        print(soup.find('span', itemprop='headline').text)
-        print(soup.find('div', class_='news-card-content news-right-box').text)
+        response = requests.get(f"https://inshorts.com/en/read/{category}", headers=headers)
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+        articles = soup.select(".news-card")
+
+        for article in articles: 
+            title = article.select("[itemprop='headline']")[0].get_text()
+            content = article.select("[itemprop='articleBody']")[0].get_text()
+            author = article.select(".author")[0].get_text()
+            published_date = article.select(".time")[0]["content"]
+            category = category
+
+            article_data = {
+                'title': title,
+                'content': content,
+                'category': category,
+                'author': author,
+                'published_date': published_date,
+            }
+            output.append(article_data)
+
+    return output
