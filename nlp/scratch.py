@@ -90,3 +90,12 @@ def get_codeup_webcontent(url):
     title = sopa.title.string
     a = {'Title': title, 'Content': content}
     return a
+
+def get_blog_posts():
+    filename = './codeup_blog_posts.csv'
+
+    # check for presence of the file or make a new request
+    if os.path.exists(filename):
+        return pd.read_csv(filename)
+    else:
+        return make_new_request()

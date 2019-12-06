@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 import os
 
 def get_codeup_blog_data():
+    filename = './codeup_blog_posts.csv'
     if os.path.exists(filename):
         return pd.read_csv(filename)
     else:
@@ -28,12 +29,6 @@ def aquire_all_pages():
     Returns a list of dictionaries. Each dictionary is one created from the prior function. 
     I need to fix it so that each list element has a unique name
     """
-    filename = './codeup_blog_posts.csv'
-
-    if os.path.exists(filename):
-        return pd.read_csv(filename)
-    else:
-        return aquire_all_pages()
     
     urls = [
     "https://codeup.com/codeups-data-science-career-accelerator-is-here/",
