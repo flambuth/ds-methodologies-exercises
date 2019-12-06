@@ -218,6 +218,31 @@ def tokenize(text):
     tokenizer = nltk.tokenize.ToktokTokenizer()
     return tokenizer.tokenize(text, return_str=True)
 
-tokenizer = nltk.tokenize.ToktokTokenizer()
 
-print(tokenizer.tokenize(original, return_str=True))
+def stem(text):
+    """
+    accept some text and return the text after applying stemming to all the words.
+    """
+    ps = nltk.porter.PorterStemmer()
+
+    stems = [ps.stem(word) for word in text.split()]
+    article_stemmed = ' '.join(stems)
+    return article_stemmed
+
+def lemmatize(text):
+    """
+    accept some text and return the text after applying lemmatization to each word.
+    """
+    wnl = nltk.stem.WordNetLemmatizer()
+    lemmas = [wnl.lemmatize(word) for word in text.split()]
+    return ' '.join(lemmas)
+
+wnl = nltk.stem.WordNetLemmatizer()
+
+for word in 'study studies'.split():
+    print('stem:', ps.stem(word), '-- lemma:', wnl.lemmatize(word))
+
+lemmas = [wnl.lemmatize(word) for word in article.split()]
+article_lemmatized = ' '.join(lemmas)
+
+print(article_lemmatized)

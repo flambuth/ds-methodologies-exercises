@@ -30,17 +30,23 @@ def tokenize(text):
     tokenizer = nltk.tokenize.ToktokTokenizer()
     return tokenizer.tokenize(text, return_str=True)
 
-def stem():
+def stem(text):
     """
     accept some text and return the text after applying stemming to all the words.
     """
-    pass
+    ps = nltk.porter.PorterStemmer()
 
-def lemmatize():
+    stems = [ps.stem(word) for word in text.split()]
+    article_stemmed = ' '.join(stems)
+    return article_stemmed
+
+def lemmatize(text):
     """
     accept some text and return the text after applying lemmatization to each word.
     """
-    pass
+    wnl = nltk.stem.WordNetLemmatizer()
+    lemmas = [wnl.lemmatize(word) for word in text.split()]
+    return ' '.join(lemmas)
 
 def remove_stopwords():
     """
