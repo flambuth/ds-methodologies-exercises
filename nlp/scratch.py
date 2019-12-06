@@ -255,3 +255,24 @@ def remove_stopwords(text):
     words = text.split()
     filtered_words = [w for w in words if w not in stopword_list]
     return ' '.join(filtered_words)
+
+def prepare_text(art_dict):
+    """
+    takes in the dictionary representing an article and returns a dictionary that looks like this:
+    {
+    'title': 'the original title'.
+    'original': original,
+    'stemmed': article_stemmed,
+    'lemmatized': article_lemmatized,
+    'clean': article_without_stopwords
+    }
+    """
+    prepped_dict = {
+    'title' : art_dict['Title'],
+    'original' : art_dict['Content'],
+    'stemmed' : stem(art_dict['Content']),
+    'lemmatized' : lemmatize(art_dict['Content']),
+    'clean' : remove_stopwords(art_dict['Content'])
+    }
+    return prepped_dict
+

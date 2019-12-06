@@ -14,7 +14,7 @@ def get_codeup_blog_data():
 
 def get_codeup_page(url):
     """
-    Returns a 2Key Dictionary that is a string for ['Title'] and a list for ['Content']
+    Returns a 2Key Dictionary that is a string for ['Title'] and a BIG LONG STRING for ['Content']
     """
     headers = {'User-Agent': 'Codeup Bayes Data Science'} 
     response = requests.get(url, headers=headers)
@@ -24,9 +24,9 @@ def get_codeup_page(url):
     a = {'Title': title, 'Content': content}
     return a
 
-def aquire_all_pages():
+def aquire_all_pages(df=True):
     """
-    Returns a list of dictionaries. Each dictionary is one created from the prior function. 
+    Returns a dataframe. Each column is one created from the prior function. 
     I need to fix it so that each list element has a unique name
     """
     
