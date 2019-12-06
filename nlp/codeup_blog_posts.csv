@@ -1,0 +1,212 @@
+,Content,Title
+0,"
+The rumors are true! The time has arrived. Codeup has officially opened applications to our new Data Science career accelerator, with only 25 seats available! This immersive program is one of a kind in San Antonio, and will help you land a job in Glassdoor’s #1 Best Job in America.
+Data Science is a method of providing actionable intelligence from data. The data revolution has hit San Antonio, resulting in an explosion in Data Scientist positions across companies like USAA, Accenture, Booz Allen Hamilton, and HEB. We’ve even seen UTSA invest $70 M for a Cybersecurity Center and School of Data Science. We built a program to specifically meet the growing demands of this industry.
+Our program will be 18 weeks long, full-time, hands-on, and project-based. Our curriculum development and instruction is led by Senior Data Scientist, Maggie Giust, who has worked at HEB, Capital Group, and Rackspace, along with input from dozens of practitioners and hiring partners. Students will work with real data sets, realistic problems, and the entire data science pipeline from collection to deployment. They will receive professional development training in resume writing, interviewing, and continuing education to prepare for a smooth transition to the workforce.
+We focus on applied data science for immediate impact and ROI in a business, which is how we can back it all up with a 6 month tuition refund guarantee – just like our existing Web Dev program. We’re focusing on Data Science with Python, SQL, and ML, covered in 14 modules: 1) Fundamentals; 2) Applied statistics; 3) SQL; 4) Python; 5) Supervised machine learning – regression; 6) Supervised machine learning – classification; 7) Unsupervised machine learning – clustering; 8) Time series analysis; 9) Anomaly detection; 10) Natural language processing; 11) Distributed machine learning; 12) Advanced topics (deep learning, NoSQL, cloud deployment, etc.); 13) Storytelling with data; and 14) Domain expertise development.
+Applications are now open for Codeup’s first Data Science cohort, which will start class on February 4, 2019. Hurry – there are only 25 seats available! To further our mission of cultivating inclusive growth, scholarships will be available to women, minorities, LGBTQIA+ individuals, veterans, first responders, and people relocating to San Antonio.
+If you want to learn about joining our program or hiring our graduates, email datascience@codeup.com!
+",Codeup’s Data Science Career Accelerator is Here! - Codeup
+1,"
+By Dimitri Antoniou and Maggie Giust
+Data Science, Big Data, Machine Learning, NLP, Neural Networks…these buzzwords have rapidly spread into mainstream use over the last few years. Unfortunately, definitions are varied and sources of truth are limited. Data Scientists are in fact not magical unicorn wizards who can snap their fingers and turn a business around! Today, we’ll take a cue from our favorite Mythbusters to tackle some common myths and misconceptions in the field of Data Science.
+
+via GIPHY
+Myth #1: Data Science = Statistics
+At first glance, this one doesn’t sound unreasonable. Statistics is defined as, “A branch of mathematics dealing with the collection, analysis, interpretation, and presentation of masses of numerical data.” That sounds a lot like our definition of Data Science: a method of drawing actionable intelligence from data. 
+In truth, statistics is actually one small piece of Data Science. As our Senior Data Scientist puts it, “Statistics forces us to make assumptions about the nature of the relationship between variables, the distribution of the data, etc.” In the traditional Data Science venn diagram, you’ll see that math/stats make up ⅓ of a working professional. These are tools and skills to leverage, but data science itself is about drawing intelligence from data.
+BUSTED
+
+via GIPHY
+ 
+Myth #2: Data Scientist = Business/Data Analyst
+This one is so common that we wrote a whole post about it! These are separate and different roles within the data field. While a data scientist will often do analytics, their spectrum of work is wider. A data analyst will use structured data to create dashboards and KPIs, while a Data Scientist deals with unstructured and messy data for a range of outputs. If they’re interested, business analysts will often progress to data scientists.
+BUSTED
+
+via GIPHY
+ 
+Myth #3: Data Science = Data Science
+This one’s tricky, because it’s impossible to either confirm or bust! The ‘myth’ is that one person or company using the term Data Science is not necessarily the same as another person or company using the same term. Depending on organizational capacity, individual experience, educational background, and many other variables, we might be using the same name for different animals.
+Tl;dr: don’t assume a common understanding across hiring managers, recruiters, and practitioners. Look instead for specifics of tools, techniques, methodologies, and outputs. That being said, this one falls in the “plausible” category, because it may actually be true in some circumstances, while false in others.
+PLAUSIBLE
+
+via GIPHY
+ 
+Myth #4: Data Science curricula are well-defined and consistent.
+We recommend checking this one out for yourself! A quick google search for bootcamps, master’s degree programs, and online courses will reveal that different organizations teach different things. There is no commonly accepted framework for teaching data science! Some focus more on the engineering, others focus more on machine learning, some think deep learning is foundational, and some prefer to use R. 
+Our curriculum was built through employer interviews, practitioner interviews, market research, and company partnerships. But we’re based in San Antonio! A bootcamp in New York might follow the same process and end up with a different syllabus. Keep in mind, whatever your learning path, that there will be gaps in your learning. The most important thing is to recognize those gaps.
+BUSTED
+
+via GIPHY
+ 
+Myth #5: If I want to be a data scientist, I just need to learn Python or R.
+This one is common and dangerous! Just like statistics, programming languages like Python and R are tools. They’re just pieces of a larger puzzle! Knowing Python without understanding the data science pipeline is like knowing how to build a floor without having a floor plan. Of course, these are valuable technical skills that give you a leg up, but they’re second in importance to asking the right questions, knowing what tools to use when, and communicating your findings.
+BUSTED
+
+via GIPHY
+Still have questions? Reach out to us at (210) 802-7289 or DataScience@codeup.com! Want to learn more about Data Science? Check out our recent blog posts at tribucodeup.wpengine.com/blog. And of course, if data science gets you excited, get started with us today at tribucodeup.wpengine.com/apply!
+
+
+
+ 
+
+
+
+
+
+ 
+
+ 
+
+
+ 
+
+San Antonio: 600 Navarro St. #600, San Antonio, Texas 
+
+ 
+
+ 
+
+ 
+
+|   info@codeup.com 
+
+   |   210 - 802 - 7289   
+
+ 
+
+Dallas: 701 Commerce St #100A, Dallas, TX 75202 
+
+
+ 
+var htmlDiv = document.getElementById(""rs-plugin-settings-inline-css""); var htmlDivCss="""";
+				if(htmlDiv) {
+					htmlDiv.innerHTML = htmlDiv.innerHTML + htmlDivCss;
+				}else{
+					var htmlDiv = document.createElement(""div"");
+					htmlDiv.innerHTML = ""<style>"" + htmlDivCss + ""</style>"";
+					document.getElementsByTagName(""head"")[0].appendChild(htmlDiv.childNodes[0]);
+				}
+			
+
+if (setREVStartSize!==undefined) setREVStartSize(
+	{c: '#rev_slider_1_1', responsiveLevels: [1240,1024,778,480], gridwidth: [1240,1024,778,480], gridheight: [283,283,239,239], sliderLayout: 'fullwidth'});
+			
+var revapi1,
+	tpj;	
+(function() {			
+	if (!/loaded|interactive|complete/.test(document.readyState)) document.addEventListener(""DOMContentLoaded"",onLoad); else onLoad();	
+	function onLoad() {				
+		if (tpj===undefined) { tpj = jQuery; if(""off"" == ""on"") tpj.noConflict();}
+	if(tpj(""#rev_slider_1_1"").revolution == undefined){
+		revslider_showDoubleJqueryError(""#rev_slider_1_1"");
+	}else{
+		revapi1 = tpj(""#rev_slider_1_1"").show().revolution({
+			sliderType:""hero"",
+			jsFileLocation:""//codeup.com/wp-content/plugins/revslider/public/assets/js/"",
+			sliderLayout:""fullwidth"",
+			dottedOverlay:""none"",
+			delay:9000,
+			responsiveLevels:[1240,1024,778,480],
+			visibilityLevels:[1240,1024,778,480],
+			gridwidth:[1240,1024,778,480],
+			gridheight:[283,283,239,239],
+			lazyType:""none"",
+			shadow:0,
+			spinner:""spinner0"",
+			autoHeight:""off"",
+			disableProgressBar:""on"",
+			hideThumbsOnMobile:""off"",
+			hideSliderAtLimit:0,
+			hideCaptionAtLimit:0,
+			hideAllCaptionAtLilmit:0,
+			debugMode:false,
+			fallbacks: {
+				simplifyAll:""off"",
+				disableFocusListener:false,
+			}
+		});
+	}; /* END OF revapi call */
+	
+ }; /* END OF ON LOAD FUNCTION */
+}()); /* END OF WRAPPING FUNCTION */
+
+
+",Data Science Myths - Codeup
+2,"
+By Dimitri Antoniou
+A week ago, Codeup launched our immersive Data Science career accelerator! With our first class kicking off in February and only 25 seats available, we’ve been answering a lot of questions from prospective students. One in particular has come up so many times we decided to dedicate a blog post to it. What is the difference between data science and data analytics?
+First, let’s define some of our terms! Take a look at this blog to understand what Data Science is. In short, it is a method of turning raw data into action, leading to a desired outcome. Big Data refers to data sets that are large and complex, usually exceeding the capacity of computers and normal processing power to deal with. Machine Learning is the process of ‘learning’ underlying patterns of data in order to automate the extraction of intelligence from that data.
+
+Now, let’s look at the data pipeline that data scientists work through to reach the actionable insights and outcomes we mentioned:
+
+We start by collecting data, which may come from social media channels, network logs, financials, employee records, or more.
+We then process that data into usable information stored in databases or streamed.
+Next, we look back on the history of that data to summarize, describe, and explain, turning the data into meaningful knowledge. Here we’re primarily using mathematics, statistics, and visualization methods.
+Now we convert that knowledge into intelligence, seeking to predict future events so that we can make decisions in the present. This is where practitioners will introduce mathematical/statistical modeling through machine learning to their data.
+Finally, we enable action by building automations, running tests, building visualizations, monitoring new data, etc.
+
+Data professionals work at different stages of the spectrum to move data through the pipeline. On the left, Big Data Engineers specialize in collecting, storing, and processing data, getting it from Data to Information. In the middle, analysts work to understand and convert that information to knowledge. Lastly, a Machine Learning Engineer utilizes machine learning algorithms to turn intelligence into action by building automations, visualizations, recommendations, and predictions.
+Data Scientists span multiple stages of this pipeline, from information to action. They will spend about 70% of their time wrangling data in the information stage. They will conduct statistical analysis to derive knowledge. Lastly, they predict future events and build automations using machine learning.
+For those technical folk out there, data science is to data engineering or machine learning engineering as full-stack development is to front-end or back-end development. For the non-technical folk, data science is the umbrella term that houses data analytics, machine learning, and other data professions.
+So what’s the biggest difference between a data analyst and a data scientist? Data scientists utilize computer programming and machine learning in addition to mathematics and statistics. 
+Still have questions? Reach out to us at (210) 802-7289 or DataScience@codeup.com! Wondering which of Codeup’s programs is right for you? We’ve got you covered. And of course, if data science gets you excited, get started with us today at tribucodeup.wpengine.com/apply!
+",Data Science VS Data Analytics: What’s The Difference? - Codeup
+3,"
+10 Tips to Crush It at the SA Tech Job Fair
+SA Tech Job Fair
+The third bi-annual San Antonio Tech Job Fair is just around the corner. Over 25 companies will be at The Jack Guenther Pavilion on April 10th, and they are hungry for new tech team members!
+At the job fair, companies want to quickly source a list of new talent leads. AKA they need to find qualified employees they can begin interviewing for jobs. Recruiters will represent their organization at tables with informational handouts and company swag. Your goal at a job fair is to set yourself apart from other candidates and ensure your name makes it to the top of those lead lists.
+Think of your interaction with the company as a mini screening interview. The company rep will subtly evaluate basic qualities like your professionalism, communication and interpersonal skills, work experience, and interest level in the organization. Job fairs are also an opportunity for you to gain information about companies that may not be easily accessible online.  
+At Codeup, we’re passionate about bridging the gap between talent and demand, so we’ve outlined 10 tips to ensure you bring your A-game and leave a lasting impression!
+10 Tips for Totally Crushing it at the SA Tech Job Fair
+
+Use keywords to describe your skills, but don’t go overboard. You’ll probably be talking to a recruiter or talent acquisition specialist. As a technical candidate, recognize these individuals usually aren’t developers or network administrators. They know terms like “JavaScript” and “Apache,” but haven’t written a line of code or spun up a server, so don’t get too caught up in industry jargon.
+Research the companies ahead of time. Review the list of attending companies and make sure you know what the company does and whether or not they hire people in your desired role. Look up recent news on the company and mention it during your conversation.
+Define your own goals for the job fair. Are you searching for a specific type of role or company culture? What matters most in your job search? Are there companies you want to prioritize?  Develop a game plan and be intentional with your time.
+Prepare a stellar résumé. Bring about 20 copies of your résumé to the event, printed on nice paper. We won’t cover resume writing in this post, but there are a plethora of online resources you can consult. For job fairs, don’t worry about cover letters.
+Polish your online profiles. If recruiters have a copy of your resume, you can be sure they will stalk you online soon. Make sure your online presence is professional and appropriate. A good place to start is by Googling yourself. Update your LinkedIn, and clean up any social media profiles.
+Craft a 30-60 second elevator pitch. You may only have a few minutes with an employer. What will you say if they ask, “Tell me about yourself?” Consider structuring your pitch like this: Who you are + What you do + What your goals are + Why that matters to the company.
+Don’t show up in a t-shirt, but trade in your suit for something more chill. Always keep it professional, but remember: tech is typically more casual than other industries. You’ll likely feel out of place if you look like you belong on Wall St., so refer to this guide on dressing for tech interviews.
+Don’t forget the basics. Start and end each conversation with a firm handshake. Make eye contact while conversing. Smile! Thank the recruiter before you move on to the next table.
+Ask educated questions. Don’t waste valuable face time with recruiters by asking questions like, “What does [Insert Company here] do?” They hate that question! Instead, try some of these:
+
+What are the top 3-5 examples of knowledge, skills, and abilities you look for in candidates?
+What’s the best advice you have for someone who wants to work here?
+What is your interview process like?
+Are you hiring for any roles not currently listed on your websites?
+
+
+Follow up. Collect business cards from each table. The next day, send a short note expressing your interest in the company’s opportunities and thanking the recruiter for his or her time.
+
+RSVP for the SA Tech Job Fair taking place at the Jack Guenther Pavilion – September 18th starting at 4 pm. 
+",10 Tips to Crush It at the SA Tech Job Fair - Codeup
+4,"
+Competitor Bootcamps Are Closing. Is the Model in Danger?
+ 
+
+Is the programming bootcamp model in danger?
+In recent news, DevBootcamp and The Iron Yard announced that they are closing their doors. This is big news. DevBootcamp was the first programming bootcamp model and The Iron Yard is a national player with 15 campuses across the U.S. In both cases, the companies cited an unsustainable business model. Does that mean the boot-camp model is dead?
+
+tl;dr “Nope!”
+Bootcamps exist because traditional education models have failed to provide students job-ready skills for the 21st century. Students demand better employment options from their education. Employers demand skilled and job ready candidates. Big Education’s failure to meet those needs through traditional methods created the fertile ground for the new business model of the programming bootcamp.
+Education giant Kaplan and Apollo Education Group (owner of University of Phoenix) bought their way into this new educational model when they purchased The Iron Yard and DevBootcamp. They purchased their competition with the intent to scale up the model. Unfortunately, Big Education is too habituated to coming up short for students. They bought the upstarts that challenged them, tried making changes to run those bootcamps in the “Big Education” way, and, sadly, they’ve closed the doors when they realized that scaling education is more challenging when student outcomes truly matter.
+The bootcamp model is still new and there will be plenty consolidation, competition, and changes in the future. This model is based on actually being adaptive, innovative, and sustainable. And there’s always room for innovation.
+
+
+What we’ve learned at Codeup…
+
+
+Education is challenging to scale.
+Prioritizing quality over growth pays off.
+
+What we’re doing at Codeup…
+
+Higher standards in our application process are leading to better student outcomes.
+Our reputation and commitment to quality is opening new doors to previously uninterested/unreachable employers.
+In the beginning, the majority of Codeup graduates went to work with startups and small businesses. We’re now seeing a larger amount of our graduates place at medium to large sized businesses.
+Demand is growing and employers are learning that the results are in the graduates.
+Codeup’s model is sustainable, inclusive, and works.
+
+Call or contact us today to see how Codeup’s commitment to quality and approach to being a career accelerator can make a profound difference in your life.
+",Competitor Bootcamps Are Closing. Is the Model in Danger? - Codeup

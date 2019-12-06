@@ -77,3 +77,16 @@ urls = [
 # url = 'https://codeup.com/codeups-data-science-career-accelerator-is-here/'
 # headers = {'User-Agent': 'Codeup Bayes Data Science'} # codeup.com doesn't like our default user-agent
 # response = get(url, headers=headers)
+
+
+def get_codeup_webcontent(url):
+    """
+    Returns a 2Key Dictionary that is a string for ['Title'] and a list for ['Content']
+    """
+    headers = {'User-Agent': 'Codeup Bayes Data Science'} 
+    response = requests.get(url, headers=headers)
+    sopa = BeautifulSoup(response.content, 'html.parser')
+    content = sopa.select("div.mk-single-content.clearfix")[0].get_text()
+    title = sopa.title.string
+    a = {'Title': title, 'Content': content}
+    return a

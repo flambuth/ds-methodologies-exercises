@@ -3,28 +3,38 @@
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
+import os
 
-def get_codeup_webcontent(url):
+def get_codeup_blog_data():
+    if os.path.exists(filename):
+        return pd.read_csv(filename)
+    else:
+        return aquire_all_pages()
+
+def get_codeup_page(url):
     """
     Returns a 2Key Dictionary that is a string for ['Title'] and a list for ['Content']
     """
-    content = []
     headers = {'User-Agent': 'Codeup Bayes Data Science'} 
     response = requests.get(url, headers=headers)
     sopa = BeautifulSoup(response.content, 'html.parser')
-    for i in sopa.find_all('p'):
-        #print(i.get_text())
-        content.append(str(i.text))
+    content = sopa.select("div.mk-single-content.clearfix")[0].get_text()
     title = sopa.title.string
     a = {'Title': title, 'Content': content}
     return a
 
-
-def make_dict_of_web_content():
+def aquire_all_pages():
     """
     Returns a list of dictionaries. Each dictionary is one created from the prior function. 
     I need to fix it so that each list element has a unique name
     """
+    filename = './codeup_blog_posts.csv'
+
+    if os.path.exists(filename):
+        return pd.read_csv(filename)
+    else:
+        return aquire_all_pages()
+    
     urls = [
     "https://codeup.com/codeups-data-science-career-accelerator-is-here/",
     "https://codeup.com/data-science-myths/",
@@ -35,9 +45,13 @@ def make_dict_of_web_content():
     pages = []
 
     for i in urls:
-        page = get_codeup_webcontent(i)
+        page = get_codeup_page(i)
         pages.append(page)
-    return pages
+    
+    df = pd.DataFrame(pages)
+
+    df.to_csv('codeup_blog_posts.csv') 
+    return df
 
 #2
 ########
