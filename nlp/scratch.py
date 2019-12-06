@@ -246,3 +246,12 @@ lemmas = [wnl.lemmatize(word) for word in article.split()]
 article_lemmatized = ' '.join(lemmas)
 
 print(article_lemmatized)
+
+def remove_stopwords(text):
+    """
+    accept some text and return the text after removing all the stopwords.
+    """
+    stopword_list = stopwords.words('english')
+    words = text.split()
+    filtered_words = [w for w in words if w not in stopword_list]
+    return ' '.join(filtered_words)

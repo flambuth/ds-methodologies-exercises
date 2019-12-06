@@ -48,11 +48,14 @@ def lemmatize(text):
     lemmas = [wnl.lemmatize(word) for word in text.split()]
     return ' '.join(lemmas)
 
-def remove_stopwords():
+def remove_stopwords(text):
     """
     accept some text and return the text after removing all the stopwords.
     """
-    pass 
+    stopword_list = stopwords.words('english')
+    words = text.split()
+    filtered_words = [w for w in words if w not in stopword_list]
+    return ' '.join(filtered_words)
 
 def prepare_text():
     """
