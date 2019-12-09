@@ -93,4 +93,14 @@ def get_articles_by_category():
             }
             output.append(article_data)
 
-    return output
+    df = pd.DataFrame(output)
+    df.to_csv('news_articles.csv') 
+    return df
+
+
+def get_articles():
+    filename = 'news_articles.csv'
+    if os.path.exists(filename):
+        return pd.read_csv(filename)
+    else:
+        return get_articles_by_category()
