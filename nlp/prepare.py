@@ -24,6 +24,10 @@ def basic_clean(text):
     text = re.sub(r"[\r|\n|\r\n]+", ' ', text)
     return text 
 
+def remove_numbers(text):
+    text = re.sub(r"[0-9]", '', text)
+    return text
+
 def tokenize(text):
     """
     take in a string and tokenize all the words in the string.
