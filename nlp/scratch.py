@@ -276,3 +276,14 @@ def prepare_text(art_dict):
     }
     return prepped_dict
 
+
+
+import requests
+from bs4 import BeautifulSoup
+response = requests.get("https://github.com/flambuth/ds-methodologies-exercises")
+
+sopa = BeautifulSoup(response.content, 'html.parser')
+
+mydivs = soup.findAll("div", {"class": "Box-body"})
+
+readme_text = mydivs[0].find('p').text
