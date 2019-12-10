@@ -1,7 +1,7 @@
 import random
 import pandas as pd 
 import nltk 
-from ntlk.corpus import names
+from nltk.corpus import names
 
 from sklearn.naive_bayes import GaussianNB
 from sklearn import preprocessing 
