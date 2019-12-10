@@ -277,13 +277,22 @@ def prepare_text(art_dict):
     return prepped_dict
 
 
-
+#Worked on my ds-methodoligies repo
 import requests
 from bs4 import BeautifulSoup
 response = requests.get("https://github.com/flambuth/ds-methodologies-exercises")
-
 sopa = BeautifulSoup(response.content, 'html.parser')
-
 mydivs = soup.findAll("div", {"class": "Box-body"})
-
 readme_text = mydivs[0].find('p').text
+
+#worked on my crapwork repo
+response_crapwork = requests.get("https://github.com/CrapWork/time-series")
+soup = BeautifulSoup(response_crapwork.content, 'html.parser')
+textboxes = soup.findAll("div", {"class": "Box-body"})
+textboxes[0].text
+
+#worked on a repo with an image inside the textbox
+response_realPython = requests.get("https://github.com/realpython/python-guide")            
+soupe = BeautifulSoup(response_realPython.content, 'html.parser')                           
+textboxes = soupe.findAll("div", {"class": "Box-body"})                                     
+textboxes[0].text
