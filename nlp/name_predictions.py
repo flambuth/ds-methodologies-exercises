@@ -48,3 +48,19 @@ print('Accuracy: {:.2%}'.format(accuracy_score(y_train, predicted)))
 
 test_predictions = model.predict(pd.DataFrame(X_test))
 print('Accuracy: {:.2%}'.format(accuracy_score(y_test, test_predictions)))
+
+
+#####
+# With One-Hot Encoding!
+x = pd.get_dummies(df_names.Encoded_Last_Letter,prefix=['Letter'])
+X = x
+X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, test_size=.2)
+model2 = GaussianNB()
+model2.fit(X_train,y_train)
+new_predictions = model2.predict(pd.DataFrame(X_train))
+print('Accuracy: {:.2%}'.format(accuracy_score(y_train, new_predictions)))
+
+new_test_predictions = model.predict(pd.DataFrame(X_test)) 
+print('Accuracy: {:.2%}'.format(accuracy_score(y_test, new_test_predictions)))                                                    
+
+#Test results somehow got worse. I dunno. Whatever.
