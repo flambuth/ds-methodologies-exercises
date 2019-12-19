@@ -8,3 +8,10 @@ case.csv
 source.csv
 dept.csv
 *.csv
+*.json
+case.json
+source.json
+dept.json
+case.json/
+source.json/
+dept.json/
